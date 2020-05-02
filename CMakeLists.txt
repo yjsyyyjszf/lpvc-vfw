@@ -20,6 +20,13 @@ add_library(${PROJECT_NAME} MODULE
   "src/resource.rc"
 )
 
+if(MINGW)
+  target_sources(${PROJECT_NAME}
+    PRIVATE
+      "src/mingw.def"
+  )
+endif()
+
 target_link_libraries(${PROJECT_NAME}
   liblpvc
   winmm.lib
