@@ -290,7 +290,7 @@ public:
     }
 
     auto result = encoder_->encode(
-      DIBConstIterator(compressInfo->lpbiInput->biWidth, compressInfo->lpbiInput->biHeight, reinterpret_cast<const lpvc::Color*>(compressInfo->lpInput)),
+      DIBConstIterator(compressInfo->lpbiInput->biWidth, compressInfo->lpbiInput->biHeight, reinterpret_cast<const std::byte*>(compressInfo->lpInput)),
       reinterpret_cast<std::byte*>(compressInfo->lpOutput),
       keyFrame
     );
@@ -312,7 +312,7 @@ public:
     decoder_->decode(
       reinterpret_cast<const std::byte*>(decompressInfo->lpInput),
       static_cast<std::size_t>(decompressInfo->lpbiInput->biSizeImage),
-      DIBIterator(decompressInfo->lpbiOutput->biWidth, decompressInfo->lpbiOutput->biHeight, reinterpret_cast<lpvc::Color*>(decompressInfo->lpOutput))
+      DIBIterator(decompressInfo->lpbiOutput->biWidth, decompressInfo->lpbiOutput->biHeight, reinterpret_cast<std::byte*>(decompressInfo->lpOutput))
     );
 
     return ICERR_OK;
